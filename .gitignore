@@ -2,6 +2,8 @@
 *.pyo
 *.egg
 *.egg-info/
+*.tox
+**/.python-version
 
 .DS_Store
 .coverage

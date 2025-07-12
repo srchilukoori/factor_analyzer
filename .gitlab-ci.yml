@@ -4,12 +4,15 @@ stages:
   - test
 
 variables:
-  PYVERSION: "3.11"
+  PYVERSION: ""
   LOGCAPTURE_LEVEL: "DEBUG"
   CODECOV_TOKEN: "034f0bb1-e590-406f-820c-4e7c41b17712"
 
 # set up the basic job
 .runtests:
+  parallel:
+    matrix:
+      - PYVERSION: ["3.9", "3.10", "3.11", "3.12", "3.13"]
   before_script:
     - "conda create --prefix /root/factordev --channel conda-forge --file requirements.txt python=${PYVERSION} curl nose2 coverage --yes --quiet"
     - /root/factordev/bin/pip install -e .
